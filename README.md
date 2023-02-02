@@ -19,7 +19,7 @@ with a client of a higher rank.
 
 * [Building Details](README_building.md)
 * [Docker](README_docker.md)
-* 
+
 ### Troubleshooting
 
  * [Troubleshooting](README_troubleshooting.md)

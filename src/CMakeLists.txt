@@ -8,11 +8,21 @@ find_package(Boost CONFIG REQUIRED )
 
 
 
-# Generic test that uses conan libs
-add_executable(intro main.cpp Client.h Server.h)
+# client application
+add_executable(client MainClient.cpp Client.h)
 target_link_libraries(
-        intro
+        client
   PUBLIC project_options project_warnings
-  PRIVATE CLI11::CLI11 fmt::fmt spdlog::spdlog ${Boost_LIBRARIES})
+  PRIVATE CLI11::CLI11 spdlog::spdlog ${Boost_LIBRARIES})
 
-target_include_directories(intro PRIVATE "${CMAKE_BINARY_DIR}/configured_files/include")
+target_include_directories(client PRIVATE "${CMAKE_BINARY_DIR}/configured_files/include")
+
+# server application
+
+add_executable(server MainServer.cpp Server.h)
+target_link_libraries(
+        server
+        PUBLIC project_options project_warnings
+        PRIVATE CLI11::CLI11 spdlog::spdlog ${Boost_LIBRARIES})
+
+target_include_directories(server PRIVATE "${CMAKE_BINARY_DIR}/configured_files/include")
